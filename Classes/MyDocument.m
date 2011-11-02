@@ -100,12 +100,19 @@
 	return self;
 }
 
+- (NSApplicationPresentationOptions)window: (NSWindow *)window 
+      willUseFullScreenPresentationOptions: (NSApplicationPresentationOptions)proposedOptions {
+    return NSApplicationPresentationAutoHideMenuBar | NSApplicationPresentationHideDock | NSApplicationPresentationFullScreen | NSApplicationPresentationAutoHideToolbar;
+}
+
 - (void)windowControllerDidLoadNib:(NSWindowController *)aController
 {	
 	[super windowControllerDidLoadNib:aController];
 	
 	// Add our custom UI elements.
 	[self createInterface];
+    
+    
 	
 	// Assign our attributed string.
 	if ([self string] != nil) {
@@ -190,7 +197,7 @@
     }
     
     // Embedded look for the encoding button.
-    [[encodingButton cell] setBackgroundStyle:NSBackgroundStyleRaised];
+    //[[encodingButton cell] setBackgroundStyle:NSBackgroundStyleRaised];
     
     // Set the style of our overlay Scrollers.
     if ([defaults integerForKey:@"scrollerStyle"] == 0) {
